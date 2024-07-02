@@ -11,6 +11,7 @@ import email from "../Assets/image-3@2x.png";
 import password from "../Assets/image-4@2x.png";
 import eye from "../Assets/eyefill.png";
 import eyeOff from "../Assets/eyeoff.png";
+import { toast } from 'react-toastify';
 const Signup = ({ className = "" }) => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -40,13 +41,13 @@ const Signup = ({ className = "" }) => {
 
     if (Object.keys(newErrors).length === 0) {
         try {
-            const response = await axios.post(`https://signup-wpiq.onrender.com/api/signup`, formData, {
+            const response = await axios.post(`http://localhost:5000/api/signup`, formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
             if (response.status === 201) {
-                alert('User signed up successfully');
+                toast.success('User signed up successfully');
                  // Reset form data after successful signup
                  setFormData({
                   fullName: "",
@@ -67,7 +68,7 @@ const Signup = ({ className = "" }) => {
             } else {
                 errorMessage = error.message;
             }
-            alert(errorMessage);
+            toast.error(errorMessage);
         }
     }
 };
