@@ -41,7 +41,7 @@ const Signup = ({ className = "" }) => {
 
     if (Object.keys(newErrors).length === 0) {
         try {
-            const response = await axios.post(`http://localhost:5000/api/signup`, formData, {
+            const response = await axios.post(`https://signup-wpiq.onrender.com/api/signup`, formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
